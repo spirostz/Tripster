@@ -1,0 +1,14 @@
+﻿sudo java -cp 1-0.0.1-SNAPSHOT.jar:/opt/pi4j/lib/* spacepi.ListenGpioExample
+
+http://pi4j.com/example/listener.html
+
+
+
+sudo java -cp 1-0.0.1-SNAPSHOT.jar:/opt/pi4j/lib/* spacepi.ControlGpioExample
+
+
+sudo java -cp 1-0.0.1-SNAPSHOT.jar:/opt/pi4j/lib/* spacepi.ComputeModuleGpioExample
+
+sudo java -cp 1-0.0.1-SNAPSHOT.jar:/opt/pi4j/lib/* spacepi.TestRange
+
+sudo java -cp 1-0.0.1-SNAPSHOT.jar:/opt/pi4j/lib/* spacepi.MultipurposePinGpioExample

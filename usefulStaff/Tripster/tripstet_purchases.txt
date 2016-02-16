@@ -1,0 +1,62 @@
+
+14 items
+
+[ From http://www.robotshop.com (France) ]
+-----------------------------------------
+
+Devantech RD02 - 12 Volt Robot Drive System: 175.19  (145.99 without tax)
+http://www.robotshop.com/eu/en/drive-system-12-volt.html
+
+
+
+[ From http://grobotronics.com  (Greece)
+----------------------------------------
+
+Raspberry Pi 2 - Model B: 44.99
+http://grobotronics.com/raspberry-pi-2-model-b-armv7-with-1g-ram.html
+
+Raspberry Pi Camera Module - Pi NoIR: 30.00
+http://grobotronics.com/raspberry-pi-camera-module-pi-noir.html
+
+8GB Micro SD - SanDisk Ultra Class 10 Pre-Loaded with NOOBS: 9.90
+http://grobotronics.com/8gb-micro-sd-sandisk-ultra-class-10-pre-loaded-with-noobs.html
+
+Power Supply 5V 2A: 8.50
+http://grobotronics.com/power-supply-5v-2a-micro-usb.html
+
+WiFi Dongle for Raspberry Pi: 8.50
+http://grobotronics.com/wifi-dongle-nano-usb.html
+
+
+-- Distance Sensors (testing them)  --
+
+Ultrasonic Sensor - Ranging Detector 2 - 400cm: 4.00 x 4 pieces = 16
+http://grobotronics.com/ranging-detector.html
+
+Distance Sensor GP2Y0D810Z0F: 7.00
+http://grobotronics.com/distance-sensor-gp2y0d810z0f-el.html
+
+Infrared Proximity Sensor - Sharp GP2Y0A21YK: 13.00
+http://grobotronics.com/infrared-proximity-sensor-sharp-gp2y0a21yk-718.html
+
+
+-- Extras  --
+
+PiFlex Camera Mount - Green: 4.50
+http://grobotronics.com/piflex-camera-mount-green.html
+
+Breadboard 830 Tie Point: 4.99
+http://grobotronics.com/breadboard-830-tie-point.html
+
+TOTAL:
+322.57 EUR
+
+
+147,38 (GR) + 175,19 (FR) = 322.57
+
+Without tax: 119,82(GR) + 145,99(FR) = 265,81
+
+--------------------------------------
+
+
+https://www.sparkfun.com/
