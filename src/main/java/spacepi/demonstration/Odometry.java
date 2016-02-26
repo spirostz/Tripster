@@ -11,6 +11,12 @@ public class Odometry {
 		motor.resetEncoders();
 		System.out.println("Encoder Left: " + motor.getEncoderLeft());
 		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		
+		motor.updateSpeed(GearType.first);
+		Thread.sleep(3000);
+		System.out.println("Encoder Left: " + motor.getEncoderLeft());
+		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		
 	}
 
 }
