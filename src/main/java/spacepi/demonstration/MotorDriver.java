@@ -113,8 +113,8 @@ public class MotorDriver {
 		numOfBytes = device.read((int)reg, buffer, 0, 4);
 		position = (int)buffer[0] << 8 << 8 << 8;
 		position |= (int)buffer[1] << 8 << 8;
-		position |= (int)buffer[3] << 8;
-		position |= (int)buffer[4];
+		position |= (int)buffer[2] << 8;
+		position |= (int)buffer[3];
 		System.out.println(numOfBytes);		
 		return position;	
 	}
