@@ -90,6 +90,11 @@ public class MotorDriver {
 		device.write(0x1, speed);
 	}
 	
+	public void setSpeedToBothMotor(int speed) throws IOException {
+		device.write(0x0, Tools.intToByte(speed));
+		device.write(0x1, Tools.intToByte(speed));
+	}
+	
 	
 	private void turnArround() throws IOException {
 
@@ -99,7 +104,7 @@ public class MotorDriver {
 	}
 	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
-		device.write((int)cmdReg, Tools.intToByte(speed));
+		device.write((int)motor, Tools.intToByte(speed));
 	}	
 	
 	private int readRegisterByte(byte reg) throws IOException
