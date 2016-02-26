@@ -1,13 +1,14 @@
 package spacepi.demonstration;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Odometry {
 	
 	final static MotorDriver motor = new MotorDriver();
 	
 	public static void main(String[] args) throws InterruptedException, IOException {
-		motor.init();
+		/*motor.init();
 		motor.resetEncoders();
 		System.out.println("Encoder Left: " + motor.getEncoderLeft());
 		System.out.println("Encoder Right: " + motor.getEncoderRight());
@@ -32,6 +33,50 @@ public class Odometry {
 		Thread.sleep(3000);
 		System.out.println("Encoder Left: " + motor.getEncoderLeft());
 		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		*/
+		
+		
+		System.out.print("Enter your sentence: ");
+		Scanner sc = new Scanner(System.in);
+		
+		motor.init();
+		motor.resetEncoders();
+		System.out.println("Encoder Left: " + motor.getEncoderLeft());
+		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		
+		while (sc.hasNext() == true) {
+			String s1 = sc.next();
+			
+			if (s1.equalsIgnoreCase("w")){
+				motor.setSpeedToBothMotor(200);
+			}
+			
+			if (s1.equalsIgnoreCase("l")){
+				System.out.println("Encoder Left: " + motor.getEncoderLeft());
+			}
+			
+			if (s1.equalsIgnoreCase("r")){
+				System.out.println("Encoder Right: " + motor.getEncoderRight());
+			}
+
+			if (s1.equalsIgnoreCase("b")){
+				System.out.println("Encoder Left: " + motor.getEncoderLeft());
+				System.out.println("Encoder Right: " + motor.getEncoderRight());
+			}
+			
+			if (s1.equalsIgnoreCase("t")){
+				motor.turnArround();
+			}
+			
+			if (s1.equalsIgnoreCase("0")){
+				motor.resetEncoders();
+			}
+			
+			if (s1.equalsIgnoreCase("s")){
+				motor.setSpeedToBothMotor(128);
+			}
+		}
+		
 	}
 
 }

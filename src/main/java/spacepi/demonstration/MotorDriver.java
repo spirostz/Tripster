@@ -96,11 +96,11 @@ public class MotorDriver {
 	}
 	
 	
-	private void turnArround() throws IOException {
+	public void turnArround() throws IOException {
 
-		device.write(0x0, (byte) 0x78);
+		device.write(0x0, Tools.intToByte(120));
 		System.out.println();
-		device.write(0x1, (byte) 0x86);
+		device.write(0x1, Tools.intToByte(136));
 	}
 	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
@@ -112,18 +112,26 @@ public class MotorDriver {
 		return (int)device.read((int)reg);
 	}
 	
-	private int readEncoderArray(byte reg) throws IOException
-	{
-		byte[] buffer = new byte[4];
-		int numOfBytes = 0;
+	private int readEncoderArray(int firstRegister) throws IOException {
 		int position = 0;
-		numOfBytes = device.read((int)reg, buffer, 0, 4);
-		position = (int)buffer[0] << 8 << 8 << 8;
-		position |= (int)buffer[1] << 8 << 8;
-		position |= (int)buffer[2] << 8;
-		position |= (int)buffer[3];
-		System.out.println(numOfBytes);		
-		return position;	
+
+		int firstByte = device.read((int) firstRegister);
+		int secondByte = device.read((int) firstRegister + 1);
+		int thirdByte = device.read((int) firstRegister + 2);
+		int fourthByte = device.read((int) firstRegister + 3);
+
+		position = firstByte << 8 << 8 << 8;
+		position |= secondByte << 8 << 8;
+		position |= thirdByte << 8;
+		position |= fourthByte;
+		
+		
+		System.out.println("firstByte:" + firstByte);
+		System.out.println("secondByte:" + secondByte);
+		System.out.println("thirdByte:" + thirdByte);
+		System.out.println("fourthByte:" + fourthByte);
+		System.out.println("position: " + position);
+		return position;
 	}
 
 }
