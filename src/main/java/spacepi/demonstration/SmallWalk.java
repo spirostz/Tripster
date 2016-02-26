@@ -20,11 +20,11 @@ public class SmallWalk {
 		
 		turnRight();
 		
-		walkForXDistance(14500);
+		walkForXDistance(13700);
 		
 		turnRight();
 		
-		walkForXDistance(6200);
+		walkForXDistance(5400);
 		
 		turnRight();
 		
