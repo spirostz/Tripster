@@ -76,9 +76,8 @@ public class MotorDriver {
 	}
 	
 	public void resetEncoders() throws IOException
-	{
-		byte[] command = {cmdReg, resetReg};
-		device.write(command);
+	{		
+		device.write((int)cmdReg, resetReg);
 	}
 
 	private void loadSpeedToBothMotor(byte speed) throws IOException {
