@@ -17,6 +17,21 @@ public class Odometry {
 		System.out.println("Encoder Left: " + motor.getEncoderLeft());
 		System.out.println("Encoder Right: " + motor.getEncoderRight());
 		
+		motor.setMotorLeftSpeed(128);
+		Thread.sleep(3000);
+		System.out.println("Encoder Left: " + motor.getEncoderLeft());
+		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		
+		
+		motor.setMotorLeftSpeed(138);
+		Thread.sleep(3000);
+		System.out.println("Encoder Left: " + motor.getEncoderLeft());
+		System.out.println("Encoder Right: " + motor.getEncoderRight());
+		
+		motor.setMotorLeftSpeed(118);
+		Thread.sleep(3000);
+		System.out.println("Encoder Left: " + motor.getEncoderLeft());
+		System.out.println("Encoder Right: " + motor.getEncoderRight());
 	}
 
 }

@@ -75,6 +75,11 @@ public class MotorDriver {
 		return readEncoderArray(encoderRightReg);
 	}
 	
+	public void setMotorLeftSpeed(int speed) throws IOException
+	{
+		setMotorSpeed(speedLeftReg, speed);
+	}
+	
 	public void resetEncoders() throws IOException
 	{		
 		device.write((int)cmdReg, resetReg);
@@ -93,11 +98,8 @@ public class MotorDriver {
 		device.write(0x1, (byte) 0x86);
 	}
 	
-	private void setMotorSpeed(byte motor, byte speed) throws IOException {
-		byte[] command = { cmdReg, stopGearByte};
-		command[0] = motor;
-		command[1] = speed;
-		device.write(command);
+	private void setMotorSpeed(byte motor, int speed) throws IOException {
+		device.write((int)cmdReg, Tools.intToByte(speed));
 	}	
 	
 	private int readRegisterByte(byte reg) throws IOException
