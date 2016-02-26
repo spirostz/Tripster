@@ -97,10 +97,8 @@ public class MotorDriver {
 	
 	
 	public void turnArround() throws IOException {
-
-		device.write(0x0, Tools.intToByte(120));
-		System.out.println();
-		device.write(0x1, Tools.intToByte(136));
+		device.write(0x0, Tools.intToByte(136));
+		device.write(0x1, Tools.intToByte(120));
 	}
 	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
