@@ -108,13 +108,15 @@ public class MotorDriver {
 	private int readEncoderArray(byte reg) throws IOException
 	{
 		byte[] buffer = new byte[4];
+		int numOfBytes = 0;
 		int position = 0;
+		numOfBytes = device.read((int)reg, buffer, 0, 4);
 		position = (int)buffer[0] << 8 << 8 << 8;
 		position |= (int)buffer[1] << 8 << 8;
 		position |= (int)buffer[3] << 8;
 		position |= (int)buffer[4];
-		System.out.println(position);
-		return (int)device.read((int)reg, buffer, 0, 4);		
+		System.out.println(numOfBytes);		
+		return position;	
 	}
 
 }
