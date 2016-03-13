@@ -101,6 +101,16 @@ public class MotorDriver {
 		device.write(0x1, Tools.intToByte(120));
 	}
 	
+	public void turnArroundRight() throws IOException {
+		device.write(0x0, Tools.intToByte(156));
+		device.write(0x1, Tools.intToByte(100));
+	}
+	
+	public void turnArroundLeft() throws IOException {
+		device.write(0x0, Tools.intToByte(100));
+		device.write(0x1, Tools.intToByte(156));
+	}
+	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
 		device.write((int)motor, Tools.intToByte(speed));
 	}	
