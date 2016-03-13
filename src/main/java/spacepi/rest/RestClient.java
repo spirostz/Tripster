@@ -13,12 +13,16 @@ public class RestClient {
 	public static void send() throws UnirestException {
 		Gson gson = new Gson();
 		String jsonRq = gson.toJson(new MyMessage("reqqqqquest"));
-		
-		//System.out.println(jsonRq);
-		
+
+		// System.out.println(jsonRq);
+
 		// Object to Json
 		HttpResponse<String> postResponse = Unirest.post("http://localhost:4567/command")
-				.header("accept", "application/json").header("Content-Type", "application/json")
-				.body(jsonRq).asString();
+				.header("accept", "application/json").header("Content-Type", "application/json").body(jsonRq)
+				.asString();
+
+		MyMessage responseMessage = gson.fromJson(postResponse.getBody(), MyMessage.class);
+		System.out.println(responseMessage);
+
 	}
 }
