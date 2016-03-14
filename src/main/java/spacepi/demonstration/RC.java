@@ -31,11 +31,13 @@ public class RC {
 
 	public static InfoRS action(CommandRQ commandRq) throws IOException, InterruptedException {
 		String infoText = walk(commandRq.getCommandType());
-		System.out.println(commandRq);
+		System.out.println("[" + commandRq.getCommandType() + "] New Position: " + infoText);
 		return new InfoRS(infoText);
 	}
 
 	private static String walk(CommandType commandType) throws IOException, InterruptedException {
+
+		String encoders = "Left: " + motor.getEncoderLeft() + " Right: " + motor.getEncoderRight();
 
 		switch (commandType) {
 		case Front:
@@ -53,7 +55,7 @@ public class RC {
 		case Right:
 			motor.turnArroundRight();
 			break;
-			
+
 		case Reset:
 			motor.resetEncoders();
 			break;
@@ -61,13 +63,16 @@ public class RC {
 		case Stop:
 			motor.setSpeedToBothMotor(128);
 			break;
+			
+		case Read:
+			break;
 
 		default:
 			motor.setSpeedToBothMotor(128);
 			break;
 		}
 
-		return "Left: " + motor.getEncoderLeft() + " Right: " + motor.getEncoderRight();
+		return encoders;
 	}
 
 	private static void turnRight() throws IOException, InterruptedException {

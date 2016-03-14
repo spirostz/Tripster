@@ -133,12 +133,6 @@ public class MotorDriver {
 		position |= thirdByte << 8;
 		position |= fourthByte;
 		
-		
-		System.out.println("firstByte:" + firstByte);
-		System.out.println("secondByte:" + secondByte);
-		System.out.println("thirdByte:" + thirdByte);
-		System.out.println("fourthByte:" + fourthByte);
-		System.out.println("position: " + position);
 		return position;
 	}
 

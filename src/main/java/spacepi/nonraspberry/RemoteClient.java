@@ -2,6 +2,6 @@ package spacepi.nonraspberry;
 
 public class RemoteClient {
 	public static void main(String[] args) {
-		new ArrowKeys("Key Listener Tester");
+		new ArrowKeys("192.168.2.5");
 	}
 }

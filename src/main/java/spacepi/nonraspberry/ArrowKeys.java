@@ -25,9 +25,11 @@ public class ArrowKeys extends JFrame implements KeyListener {
 
 	JLabel label;
 	public volatile int lastPressedKey = 0;
-
-	public ArrowKeys(String s) {
-		super(s);
+	String ip;
+	
+	public ArrowKeys(String ip) {
+		super("Keys");
+		this.ip = ip;
 		JPanel p = new JPanel();
 		label = new JLabel("Key Listener!");
 		p.add(label);
@@ -69,72 +71,72 @@ public class ArrowKeys extends JFrame implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT && lastPressedKey != KeyEvent.VK_RIGHT) {
 			lastPressedKey = KeyEvent.VK_RIGHT;
-			send(CommandType.Right);
-
-			System.out.println("Right key pressed");
+			InfoRS rs = send(CommandType.Right, ip);
+			//System.out.println(rs);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT && lastPressedKey != KeyEvent.VK_LEFT) {
 			lastPressedKey = KeyEvent.VK_LEFT;
-			send(CommandType.Left);
-			System.out.println("Left key pressed");
+			InfoRS rs = send(CommandType.Left, ip);
+			//System.out.println(rs);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP && lastPressedKey != KeyEvent.VK_UP) {
 			lastPressedKey = KeyEvent.VK_UP;
-			send(CommandType.Front);
-			System.out.println("Up key pressed");
+			InfoRS rs = send(CommandType.Front, ip);
+			//System.out.println(rs);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN && lastPressedKey != KeyEvent.VK_DOWN) {
 			lastPressedKey = KeyEvent.VK_DOWN;
-			send(CommandType.Back);
-			System.out.println("Down key pressed");
+			InfoRS rs = send(CommandType.Back, ip);
+			//System.out.println(rs);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && lastPressedKey != KeyEvent.VK_SPACE) {
 			lastPressedKey = KeyEvent.VK_SPACE;
-			send(CommandType.Reset);
-			System.out.println("Space key pressed");
+			InfoRS rs = send(CommandType.Reset, ip);
+			System.out.println("Reset: " + rs);
 		}
 
 	}
 
 	public void keyReleased(KeyEvent e) {
+		
+		if (e.getKeyCode() == KeyEvent.VK_R) {
+			lastPressedKey = KeyEvent.VK_R;
+			InfoRS rs = send(CommandType.Read, ip);
+			System.out.println("Read: " + rs);
+		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			lastPressedKey = 0;
-			send(CommandType.Stop);
-			System.out.println("Right key Released");
+			send(CommandType.Stop, ip);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			lastPressedKey = 0;
-			send(CommandType.Stop);
-			System.out.println("Left key Released");
+			send(CommandType.Stop, ip);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			lastPressedKey = 0;
-			send(CommandType.Stop);
-			System.out.println("up key Released");
+			send(CommandType.Stop, ip);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			lastPressedKey = 0;
-			send(CommandType.Stop);
-			System.out.println("Down key Released");
+			send(CommandType.Stop, ip);
 		}
 	}
 
-	public static void send(CommandType command) {
+	public static InfoRS send(CommandType command, String ip) {
 		Gson gson = new Gson();
 		String jsonRq = gson.toJson(new CommandRQ(command));
 
 		// Object to Json
 		HttpResponse<String> postResponse = null;
 		try {
-			postResponse = Unirest.post("http://192.168.2.5:4567/command").header("accept", "application/json")
+			postResponse = Unirest.post("http://" + ip + ":4567/command").header("accept", "application/json")
 					.header("Content-Type", "application/json").body(jsonRq).asString();
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		InfoRS responseMessage = gson.fromJson(postResponse.getBody(), InfoRS.class);
-		System.out.println(responseMessage);
+		return gson.fromJson(postResponse.getBody(), InfoRS.class);
 	}
 
 }
