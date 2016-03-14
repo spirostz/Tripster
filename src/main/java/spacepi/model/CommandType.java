@@ -2,5 +2,5 @@ package spacepi.model;
 
 public enum CommandType {
 
-	Stop, Front, Back, Left, Right
+	Stop, Front, Back, Left, Right, Reset
 }

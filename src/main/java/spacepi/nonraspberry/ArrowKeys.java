@@ -89,7 +89,8 @@ public class ArrowKeys extends JFrame implements KeyListener {
 			System.out.println("Down key pressed");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && lastPressedKey != KeyEvent.VK_SPACE) {
-			send(CommandType.Stop);
+			lastPressedKey = KeyEvent.VK_SPACE;
+			send(CommandType.Reset);
 			System.out.println("Space key pressed");
 		}
 
@@ -97,18 +98,22 @@ public class ArrowKeys extends JFrame implements KeyListener {
 
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			lastPressedKey = 0;
 			send(CommandType.Stop);
 			System.out.println("Right key Released");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			lastPressedKey = 0;
 			send(CommandType.Stop);
 			System.out.println("Left key Released");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			lastPressedKey = 0;
 			send(CommandType.Stop);
 			System.out.println("up key Released");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			lastPressedKey = 0;
 			send(CommandType.Stop);
 			System.out.println("Down key Released");
 		}
