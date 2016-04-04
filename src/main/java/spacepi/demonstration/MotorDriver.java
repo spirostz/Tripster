@@ -111,6 +111,18 @@ public class MotorDriver {
 		device.write(0x1, Tools.intToByte(156));
 	}
 	
+	public double readBatteryStatus() throws IOException{
+		return ((double)device.read((int)voltReg)) / 10;
+	}
+	
+	public double readLeftMotorCurrent() throws IOException{
+		return ((double)device.read((int)currentLeftReg)) / 10;
+	}
+	
+	public double readRightMotorCurrent() throws IOException{
+		return ((double)device.read((int)currentRightReg)) / 10;
+	}
+	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
 		device.write((int)motor, Tools.intToByte(speed));
 	}	

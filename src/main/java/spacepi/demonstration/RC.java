@@ -30,14 +30,19 @@ public class RC {
 	}
 
 	public static InfoRS action(CommandRQ commandRq) throws IOException, InterruptedException {
-		String infoText = walk(commandRq.getCommandType());
-		System.out.println("[" + commandRq.getCommandType() + "] New Position: " + infoText);
-		return new InfoRS(infoText);
+		walk(commandRq.getCommandType());
+		InfoRS response = new InfoRS();
+		response.setCommandTypeCalled(commandRq.getCommandType());
+		loadStats(response);
+		
+		//////////////////////////////
+		System.out.println(response);
+		//////////////////////////////
+		
+		return response;
 	}
 
-	private static String walk(CommandType commandType) throws IOException, InterruptedException {
-
-		String encoders = "Left: " + motor.getEncoderLeft() + " Right: " + motor.getEncoderRight();
+	private static void walk(CommandType commandType) throws IOException, InterruptedException {
 
 		switch (commandType) {
 		case Front:
@@ -63,7 +68,7 @@ public class RC {
 		case Stop:
 			motor.setSpeedToBothMotor(128);
 			break;
-			
+
 		case Read:
 			break;
 
@@ -71,8 +76,18 @@ public class RC {
 			motor.setSpeedToBothMotor(128);
 			break;
 		}
+	}
 
-		return encoders;
+	private static InfoRS loadStats(InfoRS infoRs) throws IOException {
+		if (infoRs == null) {
+			infoRs = new InfoRS();
+		};
+		infoRs.setBatteryVolts(motor.readBatteryStatus());
+		infoRs.setEncoderLeftDistance(motor.getEncoderLeft());
+		infoRs.setEncoderRightDistance(motor.getEncoderRight());
+		infoRs.setLeftMotorAmps(motor.readLeftMotorCurrent());
+		infoRs.setRightMotorAmps(motor.readRightMotorCurrent());
+		return infoRs;
 	}
 
 	private static void turnRight() throws IOException, InterruptedException {
