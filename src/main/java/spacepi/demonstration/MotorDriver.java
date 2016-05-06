@@ -80,6 +80,17 @@ public class MotorDriver {
 		setMotorSpeed(speedLeftReg, speed);
 	}
 	
+	public void setMotorRightSpeed(int speed) throws IOException
+	{
+		setMotorSpeed(speedRightReg, speed);
+	}
+	
+	public void setMotorsSpeed(int leftSpeed, int rightSpeed) throws IOException
+	{
+		setMotorLeftSpeed(leftSpeed);
+		setMotorRightSpeed(rightSpeed);
+	}
+	
 	public void resetEncoders() throws IOException
 	{		
 		device.write((int)cmdReg, resetReg);

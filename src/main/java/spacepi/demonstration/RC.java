@@ -30,7 +30,7 @@ public class RC {
 	}
 
 	public static InfoRS action(CommandRQ commandRq) throws IOException, InterruptedException {
-		walk(commandRq.getCommandType());
+		walk(commandRq);
 		InfoRS response = new InfoRS();
 		response.setCommandTypeCalled(commandRq.getCommandType());
 		loadStats(response);
@@ -42,9 +42,9 @@ public class RC {
 		return response;
 	}
 
-	private static void walk(CommandType commandType) throws IOException, InterruptedException {
+	private static void walk(CommandRQ commandRQ) throws IOException, InterruptedException {
 
-		switch (commandType) {
+		switch (commandRQ.getCommandType()) {
 		case Front:
 			motor.setSpeedToBothMotor(255);
 			break;
@@ -67,6 +67,10 @@ public class RC {
 
 		case Stop:
 			motor.setSpeedToBothMotor(128);
+			break;
+			
+		case Round:
+			motor.setMotorsSpeed(commandRQ.getLeftMotorSpeed(),commandRQ.getRightMotorSpeed());
 			break;
 
 		case Read:
