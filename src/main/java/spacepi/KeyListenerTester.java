@@ -47,6 +47,12 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("Left key pressed");
         }
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            System.out.println("Up key pressed");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("Down key pressed");
+        }
 
     }
 
@@ -56,6 +62,12 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             System.out.println("Left key Released");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            System.out.println("up key Released");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("Down key Released");
         }
     }
 

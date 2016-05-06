@@ -101,6 +101,28 @@ public class MotorDriver {
 		device.write(0x1, Tools.intToByte(120));
 	}
 	
+	public void turnArroundRight() throws IOException {
+		device.write(0x0, Tools.intToByte(156));
+		device.write(0x1, Tools.intToByte(100));
+	}
+	
+	public void turnArroundLeft() throws IOException {
+		device.write(0x0, Tools.intToByte(100));
+		device.write(0x1, Tools.intToByte(156));
+	}
+	
+	public double readBatteryStatus() throws IOException{
+		return ((double)device.read((int)voltReg)) / 10;
+	}
+	
+	public double readLeftMotorCurrent() throws IOException{
+		return ((double)device.read((int)currentLeftReg)) / 10;
+	}
+	
+	public double readRightMotorCurrent() throws IOException{
+		return ((double)device.read((int)currentRightReg)) / 10;
+	}
+	
 	private void setMotorSpeed(byte motor, int speed) throws IOException {
 		device.write((int)motor, Tools.intToByte(speed));
 	}	
@@ -123,12 +145,6 @@ public class MotorDriver {
 		position |= thirdByte << 8;
 		position |= fourthByte;
 		
-		
-		System.out.println("firstByte:" + firstByte);
-		System.out.println("secondByte:" + secondByte);
-		System.out.println("thirdByte:" + thirdByte);
-		System.out.println("fourthByte:" + fourthByte);
-		System.out.println("position: " + position);
 		return position;
 	}
 
