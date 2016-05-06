@@ -19,11 +19,11 @@ public class Rest {
 	public static void listen() {
 		Gson gson = new Gson();
 		
-		post("/command", "application/json", (request, response) -> {
+	/*	post("/command", "application/json", (request, response) -> {
 			CommandRQ commandRq = gson.fromJson(request.body(), CommandRQ.class);
 			System.out.println(commandRq);
 			return new InfoRS("Gotted!!!");
-		} , new JsonTransformer());
+		} , new JsonTransformer());*/
 	}
 
 }
