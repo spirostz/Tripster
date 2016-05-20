@@ -16,7 +16,7 @@ import spacepi.model.map.RouteReference;
 
 public class CreateObjectsMain {
 
-	private static Gson gson = new Gson();
+	public static Gson gson = new Gson();
 
 	public static void main(String[] args) throws IOException {
 
@@ -36,9 +36,12 @@ public class CreateObjectsMain {
 		Map<RoutePoint, Double> distancesMap = new HashMap<>();
 		distancesMap.put(routeMap.getRoutePoints().get(initialPointId), 0.0);
 
+		Map<String, String> previous = new HashMap<>();
+		
 		while (nodeCount != exploredPoints.size()) {
 			double minimum = Double.POSITIVE_INFINITY;
 			RoutePoint tempPoint = null;
+			RoutePoint tempPrevious = null;
 
 			for (RoutePoint routePoint : exploredPoints) {
 				for (Entry<String, RouteReference> entry : routePoint.getReferencePoints().entrySet()) {
@@ -50,15 +53,19 @@ public class CreateObjectsMain {
 						if (distancesMap.get(routePoint) + distance < minimum) {
 							minimum = distancesMap.get(routePoint) + distance;
 							tempPoint = point;
+							tempPrevious = routePoint;
 						}
 					}
 				}
 			}
-
+			
+			previous.put(tempPoint.getUniqueId(), tempPrevious.getUniqueId());
 			exploredPoints.add(tempPoint);
 			distancesMap.put(tempPoint, minimum);
 		}
 
+		System.out.println(gson.toJson(previous));
+		
 		return distancesMap;
 	}
 
