@@ -1,7 +1,7 @@
 package spacepi.model.map;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 public class RouteMap implements Serializable {
 
@@ -10,13 +10,13 @@ public class RouteMap implements Serializable {
 	 */
 	private static final long serialVersionUID = 765463181543480171L;
 
-	List<RoutePoint> routePoints;
+	Map<String, RoutePoint> routePoints;
 
-	public List<RoutePoint> getRoutePoints() {
+	public Map<String, RoutePoint> getRoutePoints() {
 		return routePoints;
 	}
 
-	public void setRoutePoints(List<RoutePoint> routePoints) {
+	public void setRoutePoints(Map<String, RoutePoint> routePoints) {
 		this.routePoints = routePoints;
 	}
 

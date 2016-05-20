@@ -3,8 +3,6 @@ package spacepi.model.map;
 import java.io.Serializable;
 import java.util.Map;
 
-import spacepi.model.map.enums.RouteDirectionType;
-
 public class RoutePoint implements Serializable {
 	/**
 	 * 
@@ -12,7 +10,7 @@ public class RoutePoint implements Serializable {
 	private static final long serialVersionUID = -4325072167622414101L;
 
 	String uniqueId;
-	Map<RouteDirectionType, RouteElement> referencePoints;
+	Map<String, RouteReference> referencePoints;
 
 	public String getUniqueId() {
 		return uniqueId;
@@ -22,11 +20,11 @@ public class RoutePoint implements Serializable {
 		this.uniqueId = uniqueId;
 	}
 
-	public Map<RouteDirectionType, RouteElement> getReferencePoints() {
+	public Map<String, RouteReference> getReferencePoints() {
 		return referencePoints;
 	}
 
-	public void setReferencePoints(Map<RouteDirectionType, RouteElement> referencePoints) {
+	public void setReferencePoints(Map<String, RouteReference> referencePoints) {
 		this.referencePoints = referencePoints;
 	}
 
