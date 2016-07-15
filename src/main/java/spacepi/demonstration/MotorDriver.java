@@ -95,20 +95,19 @@ public class MotorDriver {
 		device.write(0x1, Tools.intToByte(speed));
 	}
 	
-	
 	public void turnArround() throws IOException {
 		device.write(0x0, Tools.intToByte(136));
 		device.write(0x1, Tools.intToByte(120));
 	}
 	
 	public void turnArroundRight() throws IOException {
-		device.write(0x0, Tools.intToByte(156));
-		device.write(0x1, Tools.intToByte(100));
+		device.write(0x0, Tools.intToByte(136));
+		device.write(0x1, Tools.intToByte(120));
 	}
 	
 	public void turnArroundLeft() throws IOException {
-		device.write(0x0, Tools.intToByte(100));
-		device.write(0x1, Tools.intToByte(156));
+		device.write(0x0, Tools.intToByte(120));
+		device.write(0x1, Tools.intToByte(136));
 	}
 	
 	public double readBatteryStatus() throws IOException{

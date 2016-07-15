@@ -119,7 +119,7 @@ public class PathHelper {
 		RoutePointMetadata referencePointMetadata = allPaths.get(finalPointId);
 		ordererPath.add(0, referencePointId);
 
-		while (!referencePointId.equals(initialPointId)) {
+		while (!referencePointId.equals(initialPointId)) {  //TODO: bug here
 			referencePointId = referencePointMetadata.getPreviousPointId();
 			referencePointMetadata = allPaths.get(referencePointId);
 			ordererPath.add(0, referencePointId);
