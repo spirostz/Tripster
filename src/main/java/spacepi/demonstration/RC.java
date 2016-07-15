@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import spacepi.model.CommandRQ;
 import spacepi.model.CommandType;
 import spacepi.model.InfoRS;
+import spacepi.movement.PlanRoute;
 import spacepi.rest.transformer.JsonTransformer;
 
 public class RC {
@@ -30,27 +31,34 @@ public class RC {
 	}
 
 	public static InfoRS action(CommandRQ commandRq) throws IOException, InterruptedException {
-		walk(commandRq.getCommandType());
 		InfoRS response = new InfoRS();
-		response.setCommandTypeCalled(commandRq.getCommandType());
-		loadStats(response);
-		
-		//////////////////////////////
-		System.out.println(response);
-		//////////////////////////////
-		
+		if (commandRq.getCommandType().equals(CommandType.Move)){
+			move(commandRq.getPlanRoute());
+		}
+		else{
+			walk(commandRq.getCommandType());
+			response.setCommandTypeCalled(commandRq.getCommandType());
+			loadStats(response);
+			//////////////////////////////
+			System.out.println(response);
+			//////////////////////////////
+		}
 		return response;
 	}
 
+	private static void move(PlanRoute planRoute) {
+		System.out.println(planRoute);
+	}
+	
 	private static void walk(CommandType commandType) throws IOException, InterruptedException {
 
 		switch (commandType) {
 		case Front:
-			motor.setSpeedToBothMotor(255);
+			motor.setSpeedToBothMotor(175);
 			break;
 
 		case Back:
-			motor.setSpeedToBothMotor(1);
+			motor.setSpeedToBothMotor(31);
 			break;
 
 		case Left:
