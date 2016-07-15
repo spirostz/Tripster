@@ -14,16 +14,19 @@ public class RouteReference implements Serializable {
 	RouteDirectionType routeDirectionType;
 	double distance;
 	DistanceUnitType distanceUnit;
+	String name;
 
 	public RouteReference() {
 		super();
 	}
 
-	public RouteReference(RouteDirectionType routeDirectionType, double distance, DistanceUnitType distanceUnit) {
+	public RouteReference(RouteDirectionType routeDirectionType, double distance, DistanceUnitType distanceUnit,
+			String name) {
 		super();
 		this.routeDirectionType = routeDirectionType;
 		this.distance = distance;
 		this.distanceUnit = distanceUnit;
+		this.name = name;
 	}
 
 	public RouteDirectionType getRouteDirectionType() {
@@ -50,10 +53,18 @@ public class RouteReference implements Serializable {
 		this.distanceUnit = distanceUnit;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		return "RouteElement [routeDirectionType=" + routeDirectionType + ", distance=" + distance + ", distanceUnit="
-				+ distanceUnit + "]";
+		return "RouteReference [routeDirectionType=" + routeDirectionType + ", distance=" + distance + ", distanceUnit="
+				+ distanceUnit + ", name=" + name + "]";
 	}
 
 }

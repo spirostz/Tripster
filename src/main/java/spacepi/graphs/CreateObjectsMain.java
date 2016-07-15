@@ -21,6 +21,7 @@ public class CreateObjectsMain {
 		//System.out.println(PathHelper.shortestPath(routeInitial.getRouteMaps().get("testMap"),  "P4", "P3"));
 		System.out.println(PathHelper.movementRoute(routeInitial.getRouteMaps().get("testMap"),  "P4", "P3", RouteDirectionType.NORTH));
 		
+		//System.out.println(CreatePointModel.getSampleMapAsJson());
 	}
 
 	
