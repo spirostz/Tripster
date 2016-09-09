@@ -1,5 +1,6 @@
 package spacepi.graphs;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class CreateObjectsMain {
 
 		//RouteInitial routeInitial = gson.fromJson(CreatePointModel.getSampleMapAsJson(), RouteInitial.class);
 
-	    String content = new String(Files.readAllBytes(Paths.get("/home/stzoras/projects/maps.json")));
+	    String content = new String(Files.readAllBytes(Paths.get(CreateObjectsMain.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "maps.json")));
 	   // String content = new String(Files.readAllBytes(Paths.get("/home/pi/projects/Tripster/maps.json")));
 
 		RouteInitial routeInitial = gson.fromJson(content, RouteInitial.class);
@@ -30,7 +31,5 @@ public class CreateObjectsMain {
 		
 		//System.out.println(CreatePointModel.getSampleMapAsJson());
 	}
-
-	
 
 }
