@@ -15,6 +15,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import spacepi.model.CommandRQ;
 import spacepi.model.CommandType;
 import spacepi.model.InfoRS;
+import spacepi.model.map.enums.RouteDirectionType;
+import spacepi.movement.PlanRoute;
 
 public class ArrowKeys extends JFrame implements KeyListener {
 
@@ -94,6 +96,11 @@ public class ArrowKeys extends JFrame implements KeyListener {
 			InfoRS rs = send(CommandType.Reset, ip);
 			System.out.println("Reset: " + rs);
 		}
+		if (e.getKeyCode() == KeyEvent.VK_F8 && lastPressedKey != KeyEvent.VK_F8) {
+			lastPressedKey = KeyEvent.VK_F8;
+			InfoRS rs = send(CommandType.Move, ip);
+			System.out.println("Move: " + rs);
+		}
 
 	}
 
@@ -124,7 +131,16 @@ public class ArrowKeys extends JFrame implements KeyListener {
 
 	public static InfoRS send(CommandType command, String ip) {
 		Gson gson = new Gson();
-		String jsonRq = gson.toJson(new CommandRQ(command));
+		CommandRQ commandrq = new CommandRQ(command);
+		
+		PlanRoute plan = new PlanRoute();
+		plan.setMapName("testMap");
+		plan.setInitialPointId("P1");
+		plan.setFinalPointId("P3");
+		plan.setCurrentDirection(RouteDirectionType.NORTH);
+		
+		commandrq.setPlanRoute(plan);
+		String jsonRq = gson.toJson(commandrq);
 
 		// Object to Json
 		HttpResponse<String> postResponse = null;

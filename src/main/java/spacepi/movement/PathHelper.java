@@ -1,16 +1,16 @@
 package spacepi.movement;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import spacepi.model.map.RouteMap;
-import spacepi.model.map.RoutePoint;
 import spacepi.model.map.RouteReference;
-import spacepi.model.map.dijkstra.RoutePointMetadata;
 import spacepi.model.map.enums.BasicDirectionType;
 import spacepi.model.map.enums.RouteDirectionType;
 import spacepi.model.map.physical.Movement;
@@ -111,63 +111,64 @@ public class PathHelper {
 
 	public static List<String> shortestPath(RouteMap routeMap, String initialPointId, String finalPointId) {
 
-		Map<String, RoutePointMetadata> allPaths = dijkstra(routeMap, initialPointId);
-
+		Map<String, String> previousOneByOne = dijkstra(routeMap, initialPointId);
 		List<String> ordererPath = new LinkedList<>();
 
-		String referencePointId = allPaths.get(finalPointId).getCurrentPointId();
-		RoutePointMetadata referencePointMetadata = allPaths.get(finalPointId);
-		ordererPath.add(0, referencePointId);
-
-		while (!referencePointId.equals(initialPointId)) {
-			referencePointId = referencePointMetadata.getPreviousPointId();
-			referencePointMetadata = allPaths.get(referencePointId);
-			ordererPath.add(0, referencePointId);
+		String pre = finalPointId;
+		ordererPath.add(finalPointId);
+		
+		while(!pre.equals(initialPointId)){
+			pre = previousOneByOne.get(pre);
+			ordererPath.add(pre);
 		}
+		Collections.reverse(ordererPath);
 
 		return ordererPath;
 	}
 
-	public static Map<String, RoutePointMetadata> dijkstra(RouteMap routeMap, String initialPointId) {
+	public static Map<String, String> dijkstra(RouteMap routeMap, String source) {
 
-		int nodeCount = routeMap.getRoutePoints().size();
-
-		List<RoutePoint> exploredPoints = new ArrayList<>();
-		exploredPoints.add(routeMap.getRoutePoints().get(initialPointId));
-
-		Map<RoutePoint, Double> distancesMap = new HashMap<>();
-		distancesMap.put(routeMap.getRoutePoints().get(initialPointId), 0.0);
-
-		Map<String, RoutePointMetadata> responseData = new HashMap<>();
-
-		while (nodeCount != exploredPoints.size()) {
-			double minimum = Double.POSITIVE_INFINITY;
-			RoutePoint tempPoint = null;
-			RoutePoint tempPrevious = null;
-
-			for (RoutePoint routePoint : exploredPoints) {
-				for (Entry<String, RouteReference> entry : routePoint.getReferencePoints().entrySet()) {
-
-					RoutePoint point = routeMap.getRoutePoints().get(entry.getKey());
-					double distance = entry.getValue().getDistance();
-
-					if (!exploredPoints.contains(point)) {
-						if (distancesMap.get(routePoint) + distance < minimum) {
-							minimum = distancesMap.get(routePoint) + distance;
-							tempPoint = point;
-							tempPrevious = routePoint;
-						}
-					}
+		Set<String> vertexSet = new HashSet<String>();
+		vertexSet.addAll(routeMap.getRoutePoints().keySet());
+		
+		Map<String, Double> dist = new HashMap<>();
+		Map<String, String> prev = new HashMap<>();
+		
+		for (String vertex : vertexSet) {
+			dist.put(vertex, Double.POSITIVE_INFINITY);
+			prev.put(vertex, null);
+		}
+		
+		dist.put(source, 0.0);
+		
+		while (!vertexSet.isEmpty()) {
+			String u = PathHelper.minHash(dist, vertexSet);
+			vertexSet.remove(u);
+			
+			for (Entry<String,RouteReference> v : routeMap.getRoutePoints().get(u).getReferencePoints().entrySet()) {
+				double alt =dist.get(u) + v.getValue().getDistance();
+				if (alt < dist.get(v.getKey())) {
+					dist.put(v.getKey(), alt);
+					prev.put(v.getKey(), u);
 				}
 			}
-
-			exploredPoints.add(tempPoint);
-			distancesMap.put(tempPoint, minimum);
-
-			responseData.put(tempPoint.getUniqueId(), new RoutePointMetadata(tempPoint.getUniqueId(), initialPointId,
-					tempPrevious.getUniqueId(), minimum));
 		}
+		return prev;
 
-		return responseData;
+	}
+	
+	private static String minHash(Map<String, Double> map, Set<String> set) {
+		if (set.isEmpty()) {
+			return null;
+		}
+		String minKey = "";
+		double minimum = Double.POSITIVE_INFINITY;;
+		for (Entry<String, Double> element : map.entrySet()) {
+			if (element.getValue() < minimum && set.contains(element.getKey())) {
+				minimum = element.getValue();
+				minKey = element.getKey(); 
+			}
+		}
+		return minKey;
 	}
 }

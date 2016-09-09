@@ -1,0 +1,92 @@
+{
+  "routeMaps": {
+    "testMap": {
+      "routePoints": {
+        "P1": {
+          "uniqueId": "P1",
+          "referencePoints": {
+            "P2": {
+              "routeDirectionType": "NORTH",
+              "distance": 5332,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        },
+        "P2": {
+          "uniqueId": "P2",
+          "referencePoints": {
+            "P3": {
+              "routeDirectionType": "EAST",
+              "distance": 3018,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            },
+            "P4": {
+              "routeDirectionType": "NORTH",
+              "distance": 6596,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        },
+        "P3": {
+          "uniqueId": "P3",
+          "referencePoints": {
+            "P2": {
+              "routeDirectionType": "WEST",
+              "distance": 3018,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        },
+        "P4": {
+          "uniqueId": "P4",
+          "referencePoints": {
+            "P2": {
+              "routeDirectionType": "SOUTH",
+              "distance": 6596,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            },
+            "P5": {
+              "routeDirectionType": "WEST",
+              "distance": 419,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        },
+        "P5": {
+          "uniqueId": "P5",
+          "referencePoints": {
+            "P4": {
+              "routeDirectionType": "EAST",
+              "distance": 419,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            },
+            "P6": {
+              "routeDirectionType": "NORTH",
+              "distance": 2529,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        },
+        "P6": {
+          "uniqueId": "P5",
+          "referencePoints": {
+            "P5": {
+              "routeDirectionType": "SOUTH",
+              "distance": 2529,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            }
+          }
+        }
+      }
+    }
+  }
+}
