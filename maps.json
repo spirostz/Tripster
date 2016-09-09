@@ -16,6 +16,12 @@
         "P2": {
           "uniqueId": "P2",
           "referencePoints": {
+          	"P1": {
+          	  "routeDirectionType": "SOUTH",
+              "distance": 5332,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+          	}
             "P3": {
               "routeDirectionType": "EAST",
               "distance": 3018,
