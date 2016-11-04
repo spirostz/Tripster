@@ -5,11 +5,11 @@ import static spark.Spark.post;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
 
+import spacepi.graphs.CreateObjectsMain;
 import spacepi.model.CommandRQ;
 import spacepi.model.CommandType;
 import spacepi.model.InfoRS;
@@ -29,7 +29,13 @@ public class RC {
 	static RouteInitial routeInitial;
 
 	public static void main(String[] args) throws IOException {
-		String content = new String(Files.readAllBytes(Paths.get("/home/pi/projects/Tripster/maps.json")));
+		//String content = new String(Files.readAllBytes(Paths.get("/home/pi/projects/Tripster/maps.json")));
+	    String path = CreateObjectsMain.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "maps.json";
+		String content = new String(Files.readAllBytes(Paths.get(path)));
+
+	    System.out.println("Map loaded: " + content);
+	    System.out.println("Map path: " + path);
+	    
 		routeInitial = gson.fromJson(content, RouteInitial.class);
 		motor.init();
 		listen();

@@ -7,24 +7,30 @@
           "referencePoints": {
             "P2": {
               "routeDirectionType": "NORTH",
-              "distance": 5332,
+              "distance": 1000,
               "distanceUnit": "MotorClicks",
-              "name": ""
+              "name": "P1 point..."
             }
           }
         },
         "P2": {
           "uniqueId": "P2",
           "referencePoints": {
+            "P1": {
+              "routeDirectionType": "SOUTH",
+              "distance": 1000,
+              "distanceUnit": "MotorClicks",
+              "name": ""
+            },
             "P3": {
               "routeDirectionType": "EAST",
-              "distance": 3018,
+              "distance": 500,
               "distanceUnit": "MotorClicks",
               "name": ""
             },
             "P4": {
               "routeDirectionType": "NORTH",
-              "distance": 6596,
+              "distance": 520,
               "distanceUnit": "MotorClicks",
               "name": ""
             }
@@ -35,7 +41,7 @@
           "referencePoints": {
             "P2": {
               "routeDirectionType": "WEST",
-              "distance": 3018,
+              "distance": 500,
               "distanceUnit": "MotorClicks",
               "name": ""
             }
@@ -46,13 +52,13 @@
           "referencePoints": {
             "P2": {
               "routeDirectionType": "SOUTH",
-              "distance": 6596,
+              "distance": 520,
               "distanceUnit": "MotorClicks",
               "name": ""
             },
             "P5": {
               "routeDirectionType": "WEST",
-              "distance": 419,
+              "distance": 900,
               "distanceUnit": "MotorClicks",
               "name": ""
             }
@@ -63,13 +69,13 @@
           "referencePoints": {
             "P4": {
               "routeDirectionType": "EAST",
-              "distance": 419,
+              "distance": 900,
               "distanceUnit": "MotorClicks",
               "name": ""
             },
             "P6": {
               "routeDirectionType": "NORTH",
-              "distance": 2529,
+              "distance": 500,
               "distanceUnit": "MotorClicks",
               "name": ""
             }
@@ -80,7 +86,7 @@
           "referencePoints": {
             "P5": {
               "routeDirectionType": "SOUTH",
-              "distance": 2529,
+              "distance": 500,
               "distanceUnit": "MotorClicks",
               "name": ""
             }

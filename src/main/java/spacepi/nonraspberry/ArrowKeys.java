@@ -135,13 +135,15 @@ public class ArrowKeys extends JFrame implements KeyListener {
 		
 		PlanRoute plan = new PlanRoute();
 		plan.setMapName("testMap");
-		plan.setInitialPointId("P1");
-		plan.setFinalPointId("P3");
-		plan.setCurrentDirection(RouteDirectionType.NORTH);
+		plan.setInitialPointId("P4");
+		plan.setFinalPointId("P1");
+		plan.setCurrentDirection(RouteDirectionType.WEST);
 		
 		commandrq.setPlanRoute(plan);
 		String jsonRq = gson.toJson(commandrq);
 
+		System.out.println(jsonRq);
+		
 		// Object to Json
 		HttpResponse<String> postResponse = null;
 		try {
